@@ -1,0 +1,39 @@
+fragment UserChatFragment on UserChat {
+  id
+  partner {
+    ...ChatPartnerFragment
+  }
+  lastMessage {
+    ...ChatMessageFragment
+  }
+  type
+  isDeleted
+  pinnedAt
+  lastSeen
+  timestamp
+  createdAt
+  updatedAt
+}
+
+fragment ChatPartnerFragment on User {
+  id
+  name
+  age
+  media(videoCount: 1, photoCount: 1) {
+    userId
+    photoUrl(size: MEDIUM)
+    videoUrl(size: MEDIUM)
+    type
+    updatedAt
+  }
+}
+
+fragment ChatMessageFragment on ChatMessage {
+  id
+  senderId
+  type
+  payload
+  isEdited
+  createdAt
+  updatedAt
+}

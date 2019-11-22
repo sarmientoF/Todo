@@ -154,6 +154,7 @@ class OnlineFragment : Fragment() {
             }
 
             override fun onCompleted() {
+                Log.d("Online Users", "Completed WS")
             }
 
         })

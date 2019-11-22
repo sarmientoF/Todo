@@ -1,0 +1,60 @@
+query ChatViewModelGet($userId: String!, $afterId: String) {
+  chat(input: { userId: $userId }) {
+    chat {
+      id
+      type
+      isDeleted
+      createdAt
+      updatedAt
+      partner {
+        ...ChatPartnerFragment
+      }
+      messages(after: $afterId) {
+        id
+        senderId
+        type
+        payload
+        isEdited
+        createdAt
+        updatedAt
+      }
+    }
+  }
+}
+
+subscription ChatUpdate($partnerId: String!) {
+  chatUpdate(input: { partnerId: $partnerId }) {
+    message {
+      id
+      senderId
+      type
+      payload
+      isEdited
+      createdAt
+      updatedAt
+    }
+    isPartnerWriting
+    isChatDeleted
+    isChatReported
+  }
+}
+
+mutation SendTextMessage(
+  $partnerId: String!
+  $type: ChatMessageType!
+  $payload: String!
+) {
+  sendTextMessage(
+    input: { partnerId: $partnerId, type: $type, payload: $payload }
+  ) {
+    message {
+      ...ChatMessageFragment
+    }
+  }
+}
+
+mutation PingChat($partnerId: String!, $isWriting: Boolean!) {
+  pingChat(input: { partnerId: $partnerId, isWriting: $isWriting }) {
+    status
+  }
+}

@@ -1,0 +1,71 @@
+query ChatsViewModelGet {
+  chats {
+    userChats {
+      id
+      partner {
+        id
+        name
+        age
+        media(videoCount: 1, photoCount: 1) {
+          userId
+          photoUrl(size: MEDIUM)
+          videoUrl(size: MEDIUM)
+          type
+          updatedAt
+        }
+      }
+      lastMessage {
+        id
+        senderId
+        type
+        payload
+        isEdited
+        createdAt
+        updatedAt
+      }
+      type
+      isDeleted
+      pinnedAt
+      lastSeen
+      timestamp
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+subscription ChatsUpdate {
+  chatsUpdate {
+    chat {
+      id
+      partner {
+        id
+        name
+        age
+        media(videoCount: 1, photoCount: 1) {
+          userId
+          photoUrl(size: MEDIUM)
+          videoUrl(size: MEDIUM)
+          type
+          updatedAt
+        }
+      }
+      lastMessage {
+        id
+        senderId
+        type
+        payload
+        isEdited
+        createdAt
+        updatedAt
+      }
+      type
+      isDeleted
+      pinnedAt
+      lastSeen
+      timestamp
+      createdAt
+      updatedAt
+    }
+  }
+}

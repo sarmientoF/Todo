@@ -1,0 +1,35 @@
+mutation UserRegistration(
+  $uuid: String!
+  $name: String!
+  $birthDate: DateTime!
+  $gender: Int!
+  $originCountry: String!
+  $language: String!
+  $originCity: String
+  $handle: String
+  $phoneId: String
+  $email: String
+  $oneSignalId: String
+) {
+  registerMe(
+    input: {
+      uuid: $uuid
+      name: $name
+      birthDate: $birthDate
+      gender: $gender
+      originCountry: $originCountry
+      language: $language
+      originCity: $originCity
+      handle: $handle
+      phoneId: $phoneId
+      email: $email
+      oneSignalId: $oneSignalId
+    }
+  ) {
+    token
+    user {
+      id
+      createdAt
+    }
+  }
+}
